@@ -1,0 +1,80 @@
+# ==============================================================================
+# FOSO ENTERPRISE ERP - GITIGNORE STANDARD
+# ==============================================================================
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+*~
+.gemini/
+
+# Sensitive Environment & Credentials
+.env
+.env.local
+.env.*.local
+application/config/database_production.php
+application/config/jwt_keys/
+*.pem
+*.key
+*.p12
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Runtime Logs & Caches
+application/logs/log-*.php
+application/logs/*.log
+application/cache/*
+!application/cache/index.html
+system/cache/*
+!system/cache/index.html
+
+# Temporary & Session files
+temp/
+tmp/
+scratch/
+*.tmp
+
+# Uploads & Media (Retain empty folder placeholder)
+uploads/*
+!uploads/index.html
+media/*
+!media/index.html
+file/*
+!file/index.html
+
+# Database Dumps & Backups
+backups/*.sql
+backups/*.sql.gz
+backups/*.tar.gz
+backups/*.zip
+*.sql.bak
+*.dump
+hausql.sql
+yct.sql
+sql_hau.sql
+
+# Test & Duplicate files
+test*.php
+check_*.php
+*_copy.php
+*_old.php
+*_temp.php
+*_bak.php

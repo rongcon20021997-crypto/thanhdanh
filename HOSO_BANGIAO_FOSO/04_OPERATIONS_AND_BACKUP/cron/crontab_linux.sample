@@ -1,0 +1,20 @@
+# ==============================================================================
+# FOSO ERP CRONTAB CONFIGURATION (LINUX / UBUNTU / DEBIAN / CENTOS)
+# Cài đặt bằng lệnh: crontab -e
+# ==============================================================================
+
+# Khởi tạo biến môi trường
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# 1. Chạy quét & gửi thông báo nhắc việc / Đề xuất duyệt chi mỗi 15 phút
+*/15 * * * * php /var/www/html/HOSO_BANGIAO_FOSO/04_OPERATIONS_AND_BACKUP/cron/cron_cli_runner.php --action=all >> /var/log/foso_cron.log 2>&1
+
+# 2. Tổng hợp báo cáo KPI & Tiến độ sản xuất mỗi ngày lúc 00:30 đêm
+30 0 * * * php /var/www/html/HOSO_BANGIAO_FOSO/04_OPERATIONS_AND_BACKUP/cron/cron_cli_runner.php --action=kpi >> /var/log/foso_cron_kpi.log 2>&1
+
+# 3. Tự động sao lưu Cơ sở dữ liệu (Database Backup) mỗi ngày lúc 02:00 sáng
+0 2 * * * /bin/bash /var/www/html/HOSO_BANGIAO_FOSO/04_OPERATIONS_AND_BACKUP/backup/backup_database.sh >> /var/log/foso_backup.log 2>&1
+
+# 4. Tự động sao lưu Thư mục Uploads / Files mỗi Chủ Nhật hàng tuần lúc 03:00 sáng
+0 3 * * 0 /bin/bash /var/www/html/HOSO_BANGIAO_FOSO/04_OPERATIONS_AND_BACKUP/backup/backup_uploads.sh >> /var/log/foso_backup_uploads.log 2>&1

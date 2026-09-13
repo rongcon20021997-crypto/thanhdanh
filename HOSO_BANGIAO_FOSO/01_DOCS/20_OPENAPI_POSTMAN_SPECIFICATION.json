@@ -1,0 +1,123 @@
+{
+  "info": {
+    "name": "Foso Enterprise ERP / MES / HRM - API Collection",
+    "_postman_id": "foso-erp-handover-2026",
+    "description": "Bộ API hoàn chỉnh cho Mobile App, Zalo OA Webhook và External Integrations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@foso.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{refreshToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh_token",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "refresh_token"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "HRM & Attendance",
+      "item": [
+        {
+          "name": "Get Staff Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{apiToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/staff/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["staff", "profile"]
+            }
+          }
+        },
+        {
+          "name": "QR Check-in",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{apiToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"qr_code\": \"STAFF-QR-2026-001\",\n  \"device_info\": \"Android Device 12\",\n  \"location_lat\": 10.762622,\n  \"location_lng\": 106.660172\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/staff/checkin_qr",
+              "host": ["{{baseUrl}}"],
+              "path": ["staff", "checkin_qr"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Proposals & Approval",
+      "item": [
+        {
+          "name": "List Pending Proposals",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{apiToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/proposals/pending",
+              "host": ["{{baseUrl}}"],
+              "path": ["proposals", "pending"]
+            }
+          }
+        },
+        {
+          "name": "Approve Proposal",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{apiToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"proposal_id\": 102,\n  \"action\": \"approve\",\n  \"note\": \"Đã kiểm tra định mức ngân sách, duyệt.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/proposals/approve",
+              "host": ["{{baseUrl}}"],
+              "path": ["proposals", "approve"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
